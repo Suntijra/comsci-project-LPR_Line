@@ -4,3 +4,6 @@ project นี้เป็นโปรเจคจบ
 6101187 สันติ พ่อคำจันทร์
 # requirements
 python == 3.6.13
+- line-bot-sdk==2.1.0
+- idna-ssl==1.1.0
+- playsound==1.3.0
