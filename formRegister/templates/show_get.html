@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show get</title>
+    
+</head>
+<body>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <h3>name :> {{name}}</h1>
+    <h3>license_plate:> {{license_plate}}</h3>
+    <h3>tel:> {{tel}}</h3>
+    <h3>Email:> {{Email}}</h3>
+    <img id="pictureUrl">
+    <p id="userId"><b>userId:</b> </p>
+    <p id="displayName"><b>displayName:</b> </p>
+    <p id="statusMessage"><b>statusMessage:</b> </p>
+    
+    <script>
+        async function getUserProfile() {
+            const profile = await liff.getProfile()
+            //document.getElementById("pictureUrl").src = profile.profile.pictureUrl
+            document.getElementById('userId').append(profile.userid)
+            document.getElementById('statusMessage').append(profile.statusMessage)
+            document.getElementById('displayName').append(profile.displayName)
+          }
+        async function main() {
+            await liff.init({ liffId: "1656692698-MAek81KQ" })
+            getUserProfile()
+          }
+          main()
+    </script>
+</body>
+</html>

@@ -70,13 +70,7 @@ def main():
         if len(licPlate_char) > 2:
             del licPlate_char[0]
 
-        if len(listOfPossiblePlates) == 0:                          # if no plates were found
-            # print("\nno license plates were detected\n")            # inform user no plates were found
-            # cv2.imshow("imgOriginalScene Resize", re)
-            pass
-            
-        else:                                                       # else
-
+        if len(listOfPossiblePlates) != 0:                          # if no plates were found
             listOfPossiblePlates.sort(key = lambda possiblePlate: len(possiblePlate.strChars), reverse = True)
 
             # suppose the plate with the most recognized chars (the first plate in sorted by string length descending order) is the actual plate
@@ -117,8 +111,6 @@ def main():
             # cv2.imwrite("imgOriginalScene%s.png"%(pic), frames)           # write image out to file
             if cv2.waitKey(25) & 0xFF == ord('q'):
                 break
-        # end if else
-
     # cv2.waitKey(0)					# hold windows open until user presses a key
 
     return
