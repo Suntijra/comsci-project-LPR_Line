@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import  datetime
 
-client = MongoClient('localhost',27017)
+client = MongoClient('mongodb://santi:Santi!12321@157.245.59.56:27018/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false')
 mydb = client['LPR']['timestamp']
 
 def insert_licenplat(licenplat,status):

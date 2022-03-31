@@ -23,8 +23,8 @@ SECRET_KEY = '6uxn3epq3lvcsdk@%pjq&po8ayfq=siolu07xvrc@lv(4+owgs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok.io']
+alllow_url = '75f4-58-10-144-10.ngrok.io'
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -53,7 +53,7 @@ ROOT_URLCONF = 'formRegister.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'formRegister\\templates')],
+        'DIRS': [os.path.join(BASE_DIR,'formRegister//templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,3 +119,4 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'formRegister//static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+print('Path =',os.path.join(BASE_DIR,'formRegister//static'))   

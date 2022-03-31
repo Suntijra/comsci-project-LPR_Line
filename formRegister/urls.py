@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',views.registerform),
     path('index',views.index,name='index'),
-    path('webhook',views.webhook,name='webhook')
+    path('webhook',views.webhook,name='webhook'),
 ]

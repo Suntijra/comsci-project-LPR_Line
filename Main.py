@@ -34,7 +34,7 @@ def main():
     # end if
 
     # video_input = 'http://192.168.93.109/mjpeg/1'
-    video_input = 'D:\Code\Python\comsci-project\\video\car1.mp4'
+    video_input = 'video\car1.mp4'
     
     # imgOriginalScene  = cv2.imread(video_feed(video_input))  # open image
     imgOriginalScene = cv2.VideoCapture(video_input)
@@ -158,7 +158,7 @@ def writeLicensePlateCharsOnImage(imgOriginalScene, licPlate):
     ptLowerLeftTextOriginY = int(ptCenterOfTextAreaY + (textSizeHeight / 2)) 
 
             # write the text on the image
-    fontpath = "D:\Code\Python\comsci-project\\font\Sarun.ttf" # <== 这里是宋体路径 
+    fontpath = "font\Sarun.ttf" # <== 这里是宋体路径 
     font = ImageFont.truetype(fontpath,60)
     img_pil = Image.fromarray(imgOriginalScene)
     draw = ImageDraw.Draw(img_pil)

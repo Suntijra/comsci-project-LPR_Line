@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-client = MongoClient('localhost',27017)
+client = MongoClient('mongodb://santi:Santi!12321@157.245.59.56:27018/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false')
 mydb = client['LPR']['register']
 def insert_id_user_line(id_user,brand,model,plate,type):
     query = {
@@ -10,7 +10,7 @@ def insert_id_user_line(id_user,brand,model,plate,type):
         'type': type,
         }
     mydb.insert_one(query)
-# insert_id_user_line('Ufc7556c9f724503aa08f98b62d2cdb9d','5กธ9147')
+#insert_id_user_line('Ufc7556c9f724503aa08f98b62d2cdb9d','','','5กธ9147','student')
 
 def check_plate_in_db(plate):
     query = {
