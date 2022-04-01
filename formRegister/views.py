@@ -7,10 +7,10 @@ def registerform(request):
 def index(request):
     return render(request,'index.html')
 def webhook(request):
-    name = request.GET.get('name','ไม่มีชื่อส่งมา')
-    license_plate = request.GET.get('license_plate','ไม่มีชื่อส่งมา')
-    tel = request.GET.get('tel','ไม่มีชื่อส่งมา')
-    Email = request.GET.get('Email','ไม่มีชื่อส่งมา')
+    name = request.POST.get('name','ไม่มีชื่อส่งมา')
+    license_plate = request.POST.get('license_plate','ไม่มีชื่อส่งมา')
+    tel = request.POST.get('tel','ไม่มีชื่อส่งมา')
+    Email = request.POST.get('Email','ไม่มีชื่อส่งมา')
     var = {
         'name': name,
         'license_plate': license_plate,

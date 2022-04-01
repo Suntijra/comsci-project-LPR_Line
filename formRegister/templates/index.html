@@ -15,7 +15,62 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {%endblock%}
 
+{%block body%}
+<div class="content">
+    <div class="container">
+      <div class="row align-items-stretch justify-content-center no-gutters">
+        <div class="col-md-7">
+          <div class="form h-100 contact-wrap p-5">
+            <center><img src="{%static '/images/RSU_logo.jpg'%}" alt="Rsu_Logo" width=30%></center>
+            <br>
+            <form class="mb-5" method="post" id="contact_Form" name="contact_Form" action="{%url 'webhook' %}">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">Full-Name / ชื่อ-นามสกุล *</label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                </div>
+                <div class="col-md-12 form-group mb-3">
+                  <label for="" class="col-form-label">License plate / ป้ายทะเบียนของท่าน *</label>
+                  <input type="text" class="form-control" name="license_plate" id="license_plate"
+                    placeholder="Your License plate">
+                </div>
+              </div>
 
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="budget" class="col-form-label">Tel / เบอร์ติดต่อ</label>
+                  <input type="text" class="form-control" name="tel" id="tel" placeholder="Tel.">
+                </div>
+              </div>
+
+              <div class="row mb-5">
+                <div class="col-md-12 form-group mb-3">
+                  <label for="message" class="col-form-label">Email/อีเมล</label>
+                  <input type="text" class="form-control" name="Email" id="Email" placeholder="Your Email/อีเมล">
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col-md-5 form-group text-center">
+                  <input type="submit" value="Register" class="btn btn-block btn-primary rounded-0 py-2 px-4">
+                  <span class="submitting"></span>
+                </div>
+              </div>
+            </form>
+
+            <div id="form-message-warning mt-4">
+              <div id="form-message-success">
+                Your message was sent, thank you!
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{%endblock%}
 {%block script%}
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
