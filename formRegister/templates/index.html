@@ -16,60 +16,220 @@
 {%endblock%}
 
 {%block body%}
-<div class="content">
-    <div class="container">
-      <div class="row align-items-stretch justify-content-center no-gutters">
-        <div class="col-md-7">
-          <div class="form h-100 contact-wrap p-5">
-            <center><img src="{%static '/images/RSU_logo.jpg'%}" alt="Rsu_Logo" width=30%></center>
-            <br>
-            <form class="mb-5" method="post" id="contact_Form" name="contact_Form" action="{%url 'webhook' %}">
-              {% csrf_token %}
-              <div class="row">
-                <div class="col-md-12 form-group mb-3">
-                  <label for="" class="col-form-label">Full-Name / ชื่อ-นามสกุล *</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+  {%if not form.is_valid%}
+  <div class="content">
+      <div class="container">
+        <div class="row align-items-stretch justify-content-center no-gutters">
+          <div class="col-md-7">
+            <div class="form h-100 contact-wrap p-5">
+              <center><img src="{%static '/images/RSU_logo.jpg'%}" alt="Rsu_Logo" width=30%></center>
+              <br>
+              <form class="mb-5" method="post" id="contact_Form" name="contact_Form" action="{%url 'webhook'%}">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="" class="col-form-label">Full-Name / ชื่อ-นามสกุล *</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                  </div>
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="" class="col-form-label">License plate / ป้ายทะเบียนของท่าน *</label>
+                    <input type="text" class="form-control" name="license_plate" id="license_plate"
+                      placeholder="Your License plate">
+                  </div>
                 </div>
-                <div class="col-md-12 form-group mb-3">
-                  <label for="" class="col-form-label">License plate / ป้ายทะเบียนของท่าน *</label>
-                  <input type="text" class="form-control" name="license_plate" id="license_plate"
-                    placeholder="Your License plate">
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-12 form-group mb-3">
-                  <label for="budget" class="col-form-label">Tel / เบอร์ติดต่อ</label>
-                  <input type="text" class="form-control" name="tel" id="tel" placeholder="Tel.">
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="budget" class="col-form-label">Tel / เบอร์ติดต่อ</label>
+                    <input type="text" class="form-control" name="tel" id="tel" placeholder="Tel.">
+                  </div>
                 </div>
-              </div>
 
-              <div class="row mb-5">
-                <div class="col-md-12 form-group mb-3">
-                  <label for="message" class="col-form-label">Email/อีเมล</label>
-                  <input type="text" class="form-control" name="Email" id="Email" placeholder="Your Email/อีเมล">
+                <div class="row mb-5">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="message" class="col-form-label">Email/อีเมล</label>
+                    <input type="text" class="form-control" name="Email" id="Email" placeholder="Your Email/อีเมล">
+                  </div>
                 </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="col-md-5 form-group text-center">
-                  <input type="submit" value="Register" class="btn btn-block btn-primary rounded-0 py-2 px-4">
-                  <span class="submitting"></span>
+                <div class="row justify-content-center">
+                  <div class="col-md-5 form-group text-center">
+                    <input type="submit" value="Register" class="btn btn-block btn-primary rounded-0 py-2 px-4">
+                    <span class="submitting"></span>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
 
-            <div id="form-message-warning mt-4">
-              <div id="form-message-success">
-                Your message was sent, thank you!
+              <div id="form-message-warning mt-4">
+                <div id="form-message-success">
+                  Your message was sent, thank you!
+                </div>
               </div>
+              
             </div>
-            
           </div>
         </div>
       </div>
     </div>
-
-  </div>
+    {%endif%}
+    <h3>name:{{name}}</h3>
+    <h3>license_plate{{license_plate}}</h3>
+    <h3>tel:{{tel}}</h3>
+    <h3>Email:{{Email}}</h3>
+    <p id="os"><b>OS:</b> </p>
+    <p id="language"><b>Language:</b> </p>
+    <p id="version"><b>Version:</b> </p>
+    <p id="isInClient"><b>isInClient:</b> </p>
+    <p id="accessToken"><b>AccessToken:</b> </p>
+    <img id="pictureUrl">
+    <p id="userId"><b>userId:</b> </p>
+    <p id="displayName"><b>displayName:</b> </p>
+    <p id="statusMessage"><b>statusMessage:</b> </p>
+    <p id="decodedIDToken"><b>email:</b> </p>
+    <p id="type"><b>type:</b> </p>
+    <p id="viewType"><b>viewType:</b> </p>
+    <p id="utouId"><b>utouId:</b> </p>
+    <p id="roomId"><b>roomId:</b> </p>
+    <p id="groupId"><b>groupId:</b> </p>
+    <p id="friendship"><b>isFriendship:</b> </p>
+    <p id="scanCode"><b>Code:</b> </p>
+    <p id="isLoggedIn"><b>isLoggedIn:</b> </p>
+    <p id="universalLink1"><b>Universal Link:</b> </p>
+    <p id="universalLink2"><b>Universal Link with Query params:</b> </p>
+    <p><a href="liff/path/?param=9">Link to Path</a></p>
+  
+    <button id="btnMsg" onclick="sendMsg()">Send Message</button>
+    <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
+    <button onclick="openWindow()">Open Window</button>
+    <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
+    <button id="btnLogOut" onclick="logOut()">Log Out</button>
+    <button id="btnClose" onclick="closed()">Close</button>
+  
+    <script src="js/vconsole.min.js"></script>
+    <script>
+      var vConsole = new VConsole()
+      console.log("Hello World!")
+    </script>
+  
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+      function createUniversalLink() {
+        const link1 = liff.permanentLink.createUrl()
+        document.getElementById("universalLink1").append(link1)
+  
+        liff.permanentLink.setExtraQueryParam('param=9')
+        const link2 = liff.permanentLink.createUrl()
+        document.getElementById("universalLink2").append(link2)
+      }
+  
+      async function shareMsg() {
+        await liff.shareTargetPicker([
+          {
+            type: "text",
+            text: "This message was sent by ShareTargetPicker"
+          }
+        ])
+      }
+  
+      function logOut() {
+        liff.logout()
+        window.location.reload()
+      }
+  
+      function closed() {
+        liff.closeWindow()
+      }
+  
+      async function scanCode() {
+        const result = await liff.scanCode()
+        document.getElementById("scanCode").append(result.value)
+      }
+      
+      function openWindow() {
+        liff.openWindow({
+          url: "https://line.me",
+          external: true
+        })
+      }
+  
+      async function getFriendship() {
+        const friend = await liff.getFriendship()
+        document.getElementById("friendship").append(friend.friendFlag)
+        if (!friend.friendFlag) {
+          if (confirm("คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม?")) {
+            window.location = "https://line.me/R/ti/p/@YOUR-BOT-ID"
+          }
+        }
+      }
+  
+      async function sendMsg() {
+        if (liff.getContext().type !== "none") {
+          await liff.sendMessages([
+            {
+              "type": "sticker",
+              "stickerId": 1,
+              "packageId": 1
+            }
+          ])
+          alert("Message sent")
+        }
+      }
+  
+      function getContext() {
+        if (liff.getContext() != null) {
+          document.getElementById("type").append(liff.getContext().type)
+          document.getElementById("viewType").append(liff.getContext().viewType)
+          document.getElementById("utouId").append(liff.getContext().utouId)
+          document.getElementById("roomId").append(liff.getContext().roomId)
+          document.getElementById("groupId").append(liff.getContext().groupId)
+        }
+      }
+  
+      async function getUserProfile() {
+        const profile = await liff.getProfile()
+        document.getElementById("pictureUrl").src = profile.pictureUrl
+        document.getElementById("userId").append(profile.userId)
+        document.getElementById("statusMessage").append(profile.statusMessage)
+        document.getElementById("displayName").append(profile.displayName)
+        document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+      }
+      
+      function getEnvironment() {
+        document.getElementById("os").append(liff.getOS())
+        document.getElementById("language").append(liff.getLanguage())
+        document.getElementById("version").append(liff.getVersion())
+        document.getElementById("accessToken").append(liff.getAccessToken())
+        document.getElementById("isInClient").append(liff.isInClient())
+        if (liff.isInClient()) {
+          document.getElementById("btnLogOut").style.display = "none"
+        } else {
+          document.getElementById("btnMsg").style.display = "none"
+          document.getElementById("btnScanCode").style.display = "none"
+          document.getElementById("btnClose").style.display = "none"
+        }
+      }
+  
+      async function main() {
+        /*liff.ready.then(() => {
+          document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+          if (liff.isLoggedIn()) {
+            getEnvironment()
+            getUserProfile()
+            getContext()
+            getFriendship()
+            createUniversalLink()
+          } else {
+            liff.login()
+          }
+        })*/
+        await liff.init({ liffId: "1656692698-MAek81KQ" })
+         getEnvironment()
+            getUserProfile()
+            getContext()
+            getFriendship()
+            createUniversalLink()
+      }
+      main()
+    </script>
 {%endblock%}
 {%block script%}
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>

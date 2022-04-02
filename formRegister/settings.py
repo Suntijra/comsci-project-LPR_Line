@@ -23,8 +23,8 @@ SECRET_KEY = '6uxn3epq3lvcsdk@%pjq&po8ayfq=siolu07xvrc@lv(4+owgs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-alllow_url = 'localhost'
-ALLOWED_HOSTS = []
+alllow_url = '881b-58-10-144-233.ngrok.io'
+ALLOWED_HOSTS = [alllow_url]
 
 
 # Application definition
@@ -36,8 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
