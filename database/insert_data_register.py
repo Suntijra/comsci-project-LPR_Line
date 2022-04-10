@@ -14,7 +14,7 @@ def insert_id_user_line(id_user,brand,model,plate,type):
 
 def check_plate_in_db(plate):
     query = {
-        'plate':plate
+        'llicense_plate':plate
     }
 
     result = mydb.find_one(query)
