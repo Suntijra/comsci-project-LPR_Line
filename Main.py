@@ -101,7 +101,7 @@ def main():
                         check_plate = check_plate_in_db(licPlate.strChars)
                         if check_plate[0]:
                             send_ms_to_line(check_plate[1],licPlate.strChars)
-                            break
+                            
                         
                         # break
                     # print(licPlate_char)

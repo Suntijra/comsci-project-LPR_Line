@@ -24,8 +24,7 @@
             <div class="form h-100 contact-wrap p-5">
               <center><img src="{%static '/images/RSU_logo.jpg'%}" alt="Rsu_Logo" width=30%></center>
               <br>
-              <form class="mb-5" method="post" id="contact_Form" name="contact_Form" action="{%url 'webhook'%}">
-                {% csrf_token %}
+              <form class="mb-5" method="get" id="contact_Form" name="contact_Form"  action="#">
                 <div class="row">
                   <div class="col-md-12 form-group mb-3">
                     <label for="" class="col-form-label">Full-Name / ชื่อ-นามสกุล *</label>
@@ -53,7 +52,7 @@
                 </div>
                 <div class="row justify-content-center">
                   <div class="col-md-5 form-group text-center">
-                    <input type="submit" value="Register" class="btn btn-block btn-primary rounded-0 py-2 px-4">
+                    <button type="submit" class="btn btn-lg btn-primary" onclick='ajaxSubmit()'>ลงทะเบียน</button>
                     <span class="submitting"></span>
                   </div>
                 </div>
@@ -71,46 +70,10 @@
       </div>
     </div>
     {%endif%}
-    <h3>name:{{name}}</h3>
-    <h3>license_plate{{license_plate}}</h3>
-    <h3>tel:{{tel}}</h3>
-    <h3>Email:{{Email}}</h3>
-    <p id="os"><b>OS:</b> </p>
-    <p id="language"><b>Language:</b> </p>
-    <p id="version"><b>Version:</b> </p>
-    <p id="isInClient"><b>isInClient:</b> </p>
-    <p id="accessToken"><b>AccessToken:</b> </p>
-    <img id="pictureUrl">
-    <p id="userId"><b>userId:</b> </p>
-    <p id="displayName"><b>displayName:</b> </p>
-    <p id="statusMessage"><b>statusMessage:</b> </p>
-    <p id="decodedIDToken"><b>email:</b> </p>
-    <p id="type"><b>type:</b> </p>
-    <p id="viewType"><b>viewType:</b> </p>
-    <p id="utouId"><b>utouId:</b> </p>
-    <p id="roomId"><b>roomId:</b> </p>
-    <p id="groupId"><b>groupId:</b> </p>
-    <p id="friendship"><b>isFriendship:</b> </p>
-    <p id="scanCode"><b>Code:</b> </p>
-    <p id="isLoggedIn"><b>isLoggedIn:</b> </p>
-    <p id="universalLink1"><b>Universal Link:</b> </p>
-    <p id="universalLink2"><b>Universal Link with Query params:</b> </p>
-    <p><a href="liff/path/?param=9">Link to Path</a></p>
-  
-    <button id="btnMsg" onclick="sendMsg()">Send Message</button>
-    <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
-    <button onclick="openWindow()">Open Window</button>
-    <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
-    <button id="btnLogOut" onclick="logOut()">Log Out</button>
-    <button id="btnClose" onclick="closed()">Close</button>
-  
-    <script src="js/vconsole.min.js"></script>
-    <script>
-      var vConsole = new VConsole()
-      console.log("Hello World!")
-    </script>
   
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script> -->
     <script>
       function createUniversalLink() {
         const link1 = liff.permanentLink.createUrl()
@@ -187,10 +150,14 @@
       async function getUserProfile() {
         const profile = await liff.getProfile()
         document.getElementById("pictureUrl").src = profile.pictureUrl
-        document.getElementById("userId").append(profile.userId)
+        document.getElementById("userId").append(typeof(profile.userId))
         document.getElementById("statusMessage").append(profile.statusMessage)
         document.getElementById("displayName").append(profile.displayName)
         document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
+        result = profile.userId
+        return new Promise((resolve, reject) => {
+          resolve(result)
+        })
       }
       
       function getEnvironment() {
@@ -207,30 +174,41 @@
           document.getElementById("btnClose").style.display = "none"
         }
       }
+      
+      async function ajaxSubmit(){
+        const profile = await liff.getProfile()
+        lineID = profile.userId
+        full_name = getElementById('name')
+        license_plate = getElementById('license_plate')
+        tel = getElementById('tel')
+        email = getElementById('Email')
+        
+        axios({
+            method:'get',
+            url: '',
+            params: {
+              'lineID':lineID,
+              'name':full_name,
+              'license_plate':license_plate,
+              'tel':tel,
+              'email':email
+        
+            },
+            timeout:5000,
+            headers:{'X-Requested-With':'XMLHttpRequest'}
+        }).then(response=>{
+            alert('ท่านลงทะเบีนนสำเร็จ')
+        }).catch(error =>{
+          alert(error)
+      })    }
   
-      async function main() {
-        /*liff.ready.then(() => {
-          document.getElementById("isLoggedIn").append(liff.isLoggedIn())
-          if (liff.isLoggedIn()) {
-            getEnvironment()
-            getUserProfile()
-            getContext()
-            getFriendship()
-            createUniversalLink()
-          } else {
-            liff.login()
-          }
-        })*/
+      async function Liff_Init() {
         await liff.init({ liffId: "1656692698-MAek81KQ" })
-         getEnvironment()
-            getUserProfile()
-            getContext()
-            getFriendship()
-            createUniversalLink()
       }
-      main()
+      Liff_Init()
     </script>
 {%endblock%}
+
 {%block script%}
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>

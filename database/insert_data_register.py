@@ -11,7 +11,6 @@ def insert_id_user_line(id_user,brand,model,plate,type):
         'type': type,
         }
     mydb.insert_one(query)
-insert_id_user_line('Ufc7556c9f724503aa08f98b62d2cdb9d','','','5กธ9147','student')
 
 def check_plate_in_db(plate):
     query = {

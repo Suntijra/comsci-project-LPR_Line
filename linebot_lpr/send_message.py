@@ -12,5 +12,5 @@ from linebot.models import (
 )
 line_bot_api = LineBotApi(config.Channel_access_token)
 
-def pushMessageTo_User_On_Line(check_plate,plate_message):
-    line_bot_api.push_message(check_plate,TextSendMessage(text=plate_message+' in'))
+def pushMessageTo_User_On_Line(userid,plate_message):
+    line_bot_api.push_message(userid,TextSendMessage(text=plate_message+' in'))

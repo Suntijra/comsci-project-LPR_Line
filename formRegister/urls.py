@@ -19,7 +19,6 @@ from django.urls import path,re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/',views.registerform),
     path('index',views.index,name='index'),
     path('webhook',views.webhook,name='webhook'),
 ]
