@@ -5,17 +5,31 @@ client = MongoClient('mongodb://santi:Santi!12321@157.245.59.56:27018/?authSourc
 mydb = client['LPR']['timestamp']
 
 def insert_licenplat(licenplat,status):
-    count = mydb.count()
-    dateNow = datetime.datetime.now()
-    print(count)
-    if count >= 200:
-        Delete_ducument = mydb.find_one()
-        mydb.delete_one(Delete_ducument)
-    query = {
-        'plate':licenplat,
-        'timestamp': dateNow,
-        'status':status,
-        }
-    mydb.insert_one(query)
+    x = mydb.find().sort('_id',-1).limit(1)
+    for plate_data in x :
+        plate_db = plate_data
+    print(licenplat)
+    print(plate_db['plate'])
+  
+    if licenplat == plate_db['plate']:
+        print('plate : ซ้ำๆ')
+        return False
+    else:
+        count = mydb.count()
+        dateNow = datetime.datetime.now()
+        DMY = dateNow.strftime('%d/%m/%Y')
+        time = dateNow.strftime('%H:%S')
+        print(count)
+        if count >= 1000:
+            Delete_ducument = mydb.find_one()
+            mydb.delete_one(Delete_ducument)
+        query = {
+            'plate':licenplat,
+            'DMY': DMY,
+            "time":time,
+            'status':status,
+            }
+        mydb.insert_one(query)
+        return True
 
 # insert_licenplat('test last2','testtime')

@@ -12,7 +12,7 @@ from PIL import ImageFont, ImageDraw, Image
 from database import *
 from database.insert_data_register import check_plate_in_db
 
-from database.save_timstamp import insert_licenplat 
+from database.save_timstamp import insert_licenplat as licenTimeStamp
 from linebot_lpr.send_message import pushMessageTo_User_On_Line as send_ms_to_line
 
 SCALAR_BLACK = (0.0, 0.0, 0.0)
@@ -97,9 +97,10 @@ def main():
                         print("\nlicense plate read from image = " + licPlate.strChars + "\n")
                         print("----------------------------------------")
                         # print(licPlate_char)
-                        insert_licenplat(licPlate.strChars,'in')
+                        SaveTimeStamp = licenTimeStamp(licPlate.strChars,'in')
                         check_plate = check_plate_in_db(licPlate.strChars)
-                        if check_plate[0]:
+                        if check_plate[0] and SaveTimeStamp:
+                            print('send')
                             send_ms_to_line(check_plate[1],licPlate.strChars)
                             
                         
