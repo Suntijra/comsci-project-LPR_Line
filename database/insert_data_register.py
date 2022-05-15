@@ -18,7 +18,9 @@ def check_plate_in_db(plate):
     }
 
     result = mydb.find_one(query)
-    if mydb.find_one(query) !=None:
+    if mydb.find_one(query) != None:
+        print("find_one :", mydb.find_one(query))
         return [True,result['Line_Users_ID']]
     else:
+        print('find_one : False')
         return [False]

@@ -34,7 +34,7 @@ def main():
     # end if
 
     # video_input = 'http://192.168.93.109/mjpeg/1'
-    video_input = 'video/car1.mp4'
+    video_input = 'video/5กธ9147.mp4'
     
     # imgOriginalScene  = cv2.imread(video_feed(video_input))  # open image
     imgOriginalScene = cv2.VideoCapture(video_input)
@@ -94,14 +94,17 @@ def main():
                         licPlate_char[1] = 'emty 2'
                         licPlate_char[2] = 'emty 3'
                     elif licPlate_char[0] == licPlate_char[1] == licPlate_char[2]:
-                        print("\nlicense plate read from image = " + licPlate.strChars + "\n")
+                        #qprint("\nlicense plate read from image = " + licPlate.strChars + "\n")
                         print("----------------------------------------")
                         # print(licPlate_char)
+
                         SaveTimeStamp = licenTimeStamp(licPlate.strChars,'in')
                         check_plate = check_plate_in_db(licPlate.strChars)
+                        print('SaveTimeStamp',SaveTimeStamp)
+                        print('check_plate',check_plate[0])
                         if check_plate[0] and SaveTimeStamp:
                             print('send')
-                            send_ms_to_line(check_plate[1],licPlate.strChars)
+                            send_ms_to_line(check_plate[1],licPlate.strChars,'in')
                             
                         
                         # break
