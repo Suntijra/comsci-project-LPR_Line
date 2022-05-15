@@ -22,8 +22,8 @@ def insert_licenplat(licenplat,status):
     else:
         count = mydb.count()
         dateNow = datetime.datetime.now()
-        DMY = dateNow.strftime('%d/%m/%Y')
-        time = dateNow.strftime('%H:%S')
+        DMY = dateNow.strftime("%d/%m/%Y")
+        time = dateNow.strftime('%H:%M')
         print(count)
         if count >= 1000:
             Delete_ducument = mydb.find_one()

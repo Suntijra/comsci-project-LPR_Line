@@ -1,3 +1,4 @@
+from unittest import result
 from  linebot_lpr import config
 import json
 from typing import Text
@@ -18,13 +19,15 @@ mydb = client['LPR']['timestamp']
 
 def pushMessageTo_User_On_Line(userid,plate,check):
     query = {
-        'plate':plate
+        'plate':plate,
     }
 
-    result = mydb.find_one(query)
+    data = mydb.find(query).sort('_id',-1).limit(1)
+    for x in data:
+        result = x
     print('check ===>>',result)
     txt = 'เลขทะเบียน '+plate
     if check == 'in':
-        line_bot_api.push_message(userid,TextSendMessage(text=txt+'\nเวลาเข้า : '+result['DMY']+' '+ result['time']))
+        line_bot_api.push_message(userid,TextSendMessage(text=txt+'\nเวลาเข้า : '+result['time']+'\nวันที่เข้า : '+ result['DMY']))
     elif check == 'out':
-        line_bot_api.push_message(userid,TextSendMessage(text=txt+'\nเวลาออก : '+result['DMY']+' '+ result['time']))
+        line_bot_api.push_message(userid,TextSendMessage(text=txt+'\nเวลาเข้า : '+result['time']+'\nวันที่เข้า : '+ result['DMY']))
