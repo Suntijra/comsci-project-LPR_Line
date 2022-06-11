@@ -30,4 +30,4 @@ def pushMessageTo_User_On_Line(userid,plate,check):
     if check == 'in':
         line_bot_api.push_message(userid,TextSendMessage(text=txt+'\nเวลาเข้า : '+result['time']+'\nวันที่เข้า : '+ result['DMY']))
     elif check == 'out':
-        line_bot_api.push_message(userid,TextSendMessage(text=txt+'\nเวลาเข้า : '+result['time']+'\nวันที่เข้า : '+ result['DMY']))
+        line_bot_api.push_message(userid,TextSendMessage(text=txt+'\nเวลาออก : '+result['time']+'\nวันที่ออก : '+ result['DMY']))

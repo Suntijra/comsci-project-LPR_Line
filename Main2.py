@@ -33,7 +33,7 @@ def main():
         return                                              # and exit program
     # end if
 
-    # video_input = 'http://192.168.93.109/mjpeg/1'
+    # video_input = 'http://192.168.1.45/cam/2'
     video_input = 'video/5กธ9147.mp4'
     
     # imgOriginalScene  = cv2.imread(video_feed(video_input))  # open image
@@ -52,16 +52,7 @@ def main():
         height = int(frames.shape[0] * scale_percent / 100)
         dim = (width, height)
         re =  np.array(cv2.resize(frames, dim, interpolation = cv2.INTER_AREA))
-        # re = np.array(cv2.resize(frames,dim,fx=0,fy=0, interpolation = cv2.INTER_CUBIC))
-        # convert to gray scale of each frames
-        # gray = cv2.cvtColor(frames, cv2.COLOR_BGR2GRAY)
-        # cv2.imshow("gray", gray)            # show scene image
-        # if imgOriginalScene is None:                            # if image was not read successfully
-        #     print("\nerror: image not read from file \n\n")     # print error message to std out
-        #     os.system("pause")                                  # pause so user can see error message
-        #     return                                              # and exit program
-        # # end if
-        # cv2.imshow("Resize", re)
+     
         listOfPossiblePlates = DetectPlates.detectPlatesInScene(re)           # detect plates
 
         listOfPossiblePlates = DetectChars.detectCharsInPlates(listOfPossiblePlates)        # detect chars in plates
@@ -78,11 +69,6 @@ def main():
 
             cv2.imshow("imgPlate", licPlate.imgPlate)           # show crop of plate and threshold of plate
             cv2.imshow("imgThresh", licPlate.imgThresh)
-
-            # if len(licPlate.strChars) == 0:                     # if no chars were found in the plate
-            #     print("\nno characters were detected\n\n")  # show message
-            #     return                                          # and exit program
-            # # end if
 
             drawRedRectangleAroundPlate(re, licPlate)             # draw red rectangle around plate
             # print("\nlicense plate read from image = " + licPlate.strChars + "\n")  # write license plate text to std out

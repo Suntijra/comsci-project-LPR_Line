@@ -33,8 +33,9 @@ def main():
         return                                              # and exit program
     # end if
 
-    # video_input = 'http://192.168.93.109/mjpeg/1'
-    video_input = 'video/5กธ9147.mp4'
+    # video_input = 'http://192.168.1.53/cam/1'
+    # video_input = 'video/5กธ9147.mp4'
+    video_input = 'video/car1.mp4'
     
     # imgOriginalScene  = cv2.imread(video_feed(video_input))  # open image
     imgOriginalScene = cv2.VideoCapture(video_input)
